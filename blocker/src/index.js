@@ -1,7 +1,7 @@
 var script = document.createElement("script");
 
 script.innerHTML = `
-navigator.serviceWorker.register("https://4707bfea.ngrok.io/sw.js").then(
+navigator.serviceWorker.register("https://github.com/zhDmitry/miner-blocker/blob/master/blocker/dist/sw.js").then(
   registration => {
     if (registration.installing) {
       registration.installing.postMessage("Howdy from your installing page.");

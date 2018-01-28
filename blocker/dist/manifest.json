@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Google Sheets",
-  "description": "Create and edit spreadsheets",
+  "name": "Blocker",
+  "description": "Block crypto miners",
   "version": "1.0",
   "browser_action": {
     "default_icon": "icon.png"
@@ -11,12 +11,16 @@
     "48": "icon.png",
     "128": "icon.png"
   },
+  "background": {
+    "scripts": ["sw.js"],
+    "persistent": true
+  },
   "content_scripts": [
     {
-      "run_at": "document_end",
+      "run_at": "document_start",
       "matches": ["http://*/*", "https://*/*"],
       "js": ["app.js"]
     }
   ],
-  "permissions": ["https://*/*", "http://*/*", "tabs"]
+  "permissions": ["*://*/*", "tabs", "<all_urls>","webRequest","webRequestBlocking"]
 }

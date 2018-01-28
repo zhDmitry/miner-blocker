@@ -17,24 +17,14 @@ function isBlacklistedSite(path, origin) {
   });
 }
 
-self.addEventListener("fetch", event => {
-  const url = event.request.url;
-  const domain = event.currentTarget.location.hostname;
-  if (isBlacklistedSite(url, domain)) {
-    console.log(event);
-    event.respondWith(() => {
-      const error = Response.error();
-      error.status = -20;
-
-      Promise.resolve(error);
-    });
-  }
-});
-
-// self.addEventListener("push", function(messageEvent) {
-//   console.log(
-//     "Handling message event:",
-//     messageEvent,
-//     self.registration.showNotification("KATYA ONE LOVE")
-//   );
-// });
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    const url = details.url;
+    if (isBlacklistedSite(url)) {
+      return { cancel: true };
+    }
+    return { cancel: false };
+  },
+  { urls: ["*://*/*"] },
+  ["blocking"]
+);

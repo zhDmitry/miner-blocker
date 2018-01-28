@@ -1,6 +1,5 @@
 {
   "manifest_version": 2,
-
   "name": "Google Sheets",
   "description": "Create and edit spreadsheets",
   "version": "1.0",
